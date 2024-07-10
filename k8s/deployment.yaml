@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artifactory-download
+  namespace: artifactory
+  labels:
+    app: artifactory-download
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: artifactory-download
+  template:
+    metadata:
+      labels:
+        app: artifactory-download
+    spec:
+      containers:
+      - name: artifactory-download
+        image: artifactory-download:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8081
